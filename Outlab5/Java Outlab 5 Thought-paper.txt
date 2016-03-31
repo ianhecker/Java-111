@@ -1,0 +1,66 @@
+Outlab 5 - Bowling
+------------------
+Ian Hecker
+3/31/16
+
+
+
+-Seems like you need to create your own methods for Bowling class;
+	play() method calls methods for score keeping and (print results)?
+
+-Scoring;
+	If STRIKE:
+		10 + next 2 rolls = frame 1 score
+	If SPARE:
+		10 + next roll
+		!!!(frame will be a # and "/" (spare), first roll (#), DOES NOT NEED TO BE ADDED)!!!
+	
+	if number pair = 9:
+		9/10 pins were knocked down
+	
+	if number pair = 10:
+		spare was made, add next number
+	
+	if first number is 10:
+		add next two numbers
+
+
+-for for loops;
+	
+	int tally = frames*2;
+
+	for(int i = 0; i< tally+1; i++)
+
+		if strike:
+			tally - 1
+		
+		if array[array.length-1] = 10:
+			tally + 2 	#for strike next 2 rolls add on#
+		
+		else if array[(array.length-2) + (array.length-1) = 10)]
+			tally + 1	#for spare next roll add on#
+
+
+----------------------------
+Array loop for score keeping
+----------------------------
+
+	#Need to pass in rolls[] and frames
+
+int totalScore = 0;
+
+for(int i = 0; i< tally+1; i++)
+	if array[i] == 10:		#for Strikes#
+		totalScore += array[i] + array[i+1] + array[i+2];
+	
+	else if (array[i] + array[i+1]) == 10:	#for spares#
+		totalScore += 10 + array[i+2];
+		i++;
+	else:
+		totalScore += array[i] + array[i+1];
+
+---------------------------
+Array for formatting output
+---------------------------
+
+for(i

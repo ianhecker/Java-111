@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=rolls\ frames
+comment0.target=Bowling(int[],\ int)
+comment1.params=
+comment1.target=void\ play()
+numComments=2
