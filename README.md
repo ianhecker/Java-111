@@ -1,2 +1,2 @@
 # Java-111
-Outlab 5 unfinished work
+Inlab and Outlab work for CSCI 111 at MSU
