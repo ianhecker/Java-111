@@ -1,0 +1,106 @@
+/**
+ * Holds methods to be activated by Driver
+ * 
+ * @author (Ian Hecker) 
+ * @version (3/31/16)
+ */
+public class Bowling
+{
+    private int[] rolls;
+    private int frames;
+    private String[] reformattedRolls;
+    private int[] totalPerFrame;
+    
+       
+    public Bowling(int [] rolls, int frames) {
+        this.rolls  = rolls;
+        this.frames = frames;
+    }
+    
+    public void play() {
+        scoreKeeping();
+        reformatRolls();
+        formatPrint();
+        printScore();
+    }
+    
+    public int[] scoreKeeping() {
+        int iterations = frames*2; //value to run for-loop that changes in case of strikes
+        int[] totalPerFrame = new int[frames]; /**to keep a list of frame totals for printing*/
+        int previousTotal = 0; //to prevent counter = -1 --->out of bounds error
+        int counter = 0; //counter for totalPerFrame array position because i jumps around
+        for(int i=0; i < iterations; i++) { //runs through entire list of rolls
+            if(rolls[i] == 10) { //if roll is a strike
+                if(counter != 0) { //to prevent counter = -1 --->out of bounds error
+                    previousTotal = totalPerFrame[counter-1];
+                }
+                totalPerFrame[counter] = previousTotal+ 10 + rolls[i+1] + rolls[i+2];
+                iterations -= 1; //Because one strike = two rolls worth
+                counter++; //move totalPerFrame position
+            }
+            else if((rolls[i] + rolls[i+1] == 10)) {
+                if(counter != 0) { //to prevent counter = -1 --->out of bounds error
+                    previousTotal = totalPerFrame[counter-1];
+                }
+                totalPerFrame[counter] = previousTotal + 10 + rolls[i+2];
+                i++; //Because we dont want to add the second roll again
+                counter++; //move totalPerFrame position
+            }
+            else {
+                if(counter != 0) { //to prevent counter = -1 --->out of bounds error
+                    previousTotal = totalPerFrame[counter-1]; 
+                }
+                totalPerFrame[counter] = previousTotal + rolls[i] + rolls[i+1];
+                i++; //Because we dont want to add the second roll in the pair again
+                counter++; //move totalPerFrame position
+            }
+        }
+        return totalPerFrame;
+    }
+    
+    public String[] reformatRolls() {
+        int lengthOfArray = frames*2;
+        int iterations = frames*2;
+      
+        int counter = 0;
+      
+        if(rolls[rolls.length-2] == 10) {
+            lengthOfArray += 2;
+            iterations += 2;
+        }
+        else if(rolls[rolls.length-2] + rolls[rolls.length-1] == 10) {
+            lengthOfArray += 1;
+            iterations += 1;
+        }
+        String[] reformattedRolls = new String[lengthOfArray];
+        for(int i=0; i < iterations; i++) {
+            if(rolls[counter] == 10) {
+                reformattedRolls[counter] = " ";
+                reformattedRolls[counter+1] = "X";
+                iterations -= 1; counter += 2;
+            }
+            else if(rolls[counter] + rolls[counter+1] == 10) {
+                reformattedRolls[counter] = Integer.toString(rolls[counter]);
+                reformattedRolls[counter+1] = "\\";
+                i++; counter++;
+            }
+            else {
+                reformattedRolls[counter] = Integer.toString(rolls[counter]);
+                reformattedRolls[counter+1] = Integer.toString(rolls[counter+1]);
+                counter++;
+            }
+        }
+        for(int j=0; j < reformattedRolls.length; j++) {
+            System.out.println(reformattedRolls[j]);
+        }
+        return reformattedRolls;
+    }
+    
+    public void formatPrint() {
+        
+    }
+    
+    public void printScore() {
+        
+    }
+}
